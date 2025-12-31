@@ -188,16 +188,18 @@ export default function Portfolio() {
               "Masterarbeit im Bereich Systemtest von Radarsensoren",
               "Praxisorientierte Projekte mit Fokus auf Automotive Software",
             ]}
+            note ="1,9"
           />
 
           <EducationCard
             darkMode={darkMode}
             title="Bachelor Studium (B.Tech.) – Maschinenbau"
-            place="Anna University – Indien · 2007 – 2011"
+            place="Anna Universität – Indien · 2007 – 2011"
             points={[
               "Grundlagen in Robotik, Simulation und Regelungstechnik",
               "Programmierung in C, C++ und Python",
             ]}
+            note ="1.9"
           />
 
 
@@ -209,9 +211,9 @@ export default function Portfolio() {
             darkMode={darkMode}
             title="SpaceX Launch Tracker - Python Programmierung"
             description={[
-              "Problem: Notwendigkeit zur Analyse der SpaceX-Startdaten",
-              "Lösung: Entwicklung einer Python-Anwendung unter Nutzung der SpaceX-API",
-              "Ergebnis: Visualisierung von Starts, Missionsdetails und Statistiken"
+              "Python-Anwendung zur Analyse und Visualisierung von SpaceX-Starts unter Nutzung der öffentlichen SpaceX-API",
+              "Abruf und Auswertung von Startdaten, einschließlich Missionsdetails und historischer Statistiken",
+              "Datenaufbereitung und Visualisierung zur übersichtlichen Darstellung der SpaceX-Startgeschichte"
             ]}
             tech="Python, Pycharm, Virtual Enviornment, REST API"
             link="https://github.com/Jinisht/SpaceX_Launch_Tracker"
@@ -221,9 +223,9 @@ export default function Portfolio() {
             darkMode={darkMode}
             title="Adressbuch Anwendung - C Programmierung"
             description={[
-              "Konsolenbasierte C-Anwendung zur Verwaltung von Kontakten",
-              "Unterstützt CRUD-Operationen mit Dateiverwaltung",
-              "Fokus auf Speicherverwaltung und Datenstrukturen"
+              "Konsolenbasierte Adressbuch-Anwendung in C zur Verwaltung von Namen, Telefon-/Handynummern und E-Mail-Adressen",
+              "Funktionen zum Hinzufügen, Suchen, Aktualisieren und Löschen von Kontakten über Standard-Ein-/Ausgabe (Standard I/O)",
+              "Strukturierte Datenverwaltung mit Fokus auf Dateiverarbeitung und Programmierkonzepte in C"
             ]}
             tech="C, Visual Studio Code, Code Dateiverarbeitung, Datenstrukturen, Funktion, Strings"
             link="https://github.com/Jinisht/Addressbook-Project"
@@ -300,7 +302,7 @@ function ExperienceCard({ darkMode, role, company, duration, projects }) {
   );
 }
 
-function EducationCard({ darkMode, title, place, points }) {
+function EducationCard({ darkMode, title, place, points, note }) {
   return (
     <div
       style={{
@@ -314,6 +316,11 @@ function EducationCard({ darkMode, title, place, points }) {
       <ul style={styles.list}>
         {points.map((p, i) => <li key={i}>{p}</li>)}
       </ul>
+      {note && (
+        <p style={styles.note}>
+          <strong>Abschlussnote:</strong> {note}
+        </p>
+      )}
     </div>
   );
 }
@@ -402,6 +409,18 @@ const styles = {
     transform: "translateY(-6px)",
     boxShadow: "0 12px 28px rgba(0,0,0,0.15)",
   },
+
+  note: {
+  marginTop: "12px",
+  fontSize: "0.9rem",
+  fontWeight: "600",
+  padding: "6px 12px",
+  borderRadius: "8px",
+  display: "inline-block",
+  backgroundColor: "#f1f5f9",
+  color: "#0f172a",
+},
+
   cardTitle: { fontSize: "1.3rem", fontWeight: "600", marginBottom: "8px" },
   cardSubtitle: { fontSize: "0.9rem", marginBottom: "12px" },
   projectBlock: { marginTop: "16px" },
