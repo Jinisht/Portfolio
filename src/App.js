@@ -1,39 +1,79 @@
-import { GithubIcon, LinkedinIcon, LucideChartNoAxesColumn, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
+import { useState } from "react";
 
 export default function Portfolio() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div style={styles.page}>
-      <div style={styles.container}>
+    <div
+      style={{
+        ...styles.page,
+        background: darkMode ? theme.dark.pageBg : theme.light.pageBg,
+        color: darkMode ? theme.dark.text : theme.light.text,
+      }}
+    >
+      <div
+        style={{
+          ...styles.container,
+          backgroundColor: darkMode
+            ? theme.dark.containerBg
+            : theme.light.containerBg,
+        }}
+      >
 
         {/* ================= HEADER ================= */}
         <header style={styles.header}>
           <h1 style={styles.name}>Jinish Thomas</h1>
           <p style={styles.title}>
-            Softwareentwickler (Entwicklung / Test) | IT
+            Softwareingenieur (Entwicklung / Test) | IT
           </p>
           <p style={styles.subtitle}>
-            Deutschland · Offen für Software- / Testingenieur-Positionen
+            Deutschland · Offen für Software Entwicklung / Testautomatisierung / Testingenieur-Positionen
           </p>
 
-          <div style={styles.iconRow}>
-            <a href="https://github.com/Jinisht" target="_blank" rel="noreferrer">
-              <GithubIcon />
+          <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "16px", alignItems: "center", flexWrap: "wrap" }}>
+            <a href="https://github.com/Jinisht" target="_blank" rel="noreferrer"
+              style={{ padding: "8px 16px", backgroundColor: "#333", color: "#fff", borderRadius: "8px", textDecoration: "none" }}>
+              GitHub
             </a>
-            <a href="https://www.linkedin.com/in/jinishthomas/" target="_blank" rel="noreferrer">
-              <LinkedinIcon />
+            <a href="https://www.linkedin.com/in/jinishthomas/" target="_blank" rel="noreferrer"
+              style={{ padding: "8px 16px", backgroundColor: "#0a66c2", color: "#fff", borderRadius: "8px", textDecoration: "none" }}>
+              LinkedIn
             </a>
-            <a href="mailto:jinishthomas88@gmail.com">
-              <Mail />
-            </a>
+            <span style={{ padding: "8px 16px", backgroundColor: "#6b7280", color: "#fff", borderRadius: "8px", fontWeight: "500" }}>
+              jinishthomas88@gmail.com
+            </span>
+            <span style={{ padding: "8px 16px", backgroundColor: "#6b7280", color: "#fff", borderRadius: "8px", fontWeight: "500" }}>
+              +4915163279226
+            </span>
           </div>
+
+
+
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={{
+              marginTop: "16px",
+              padding: "8px 16px",
+              borderRadius: "999px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontWeight: "500",
+              background: darkMode ? "#e5e7eb" : "#111827",
+              color: darkMode ? "#111827" : "#ffffff",
+            }}
+          >
+            {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+          </button>
         </header>
 
         {/* ================= ÜBER MICH ================= */}
         <Section title="Über mich">
           <p>
             Test- und Entwicklungsingenieur mit über 4 Jahren Erfahrung in
-            Softwaretests, Testautomatisierung und Embedded Softwareentwicklung.
-            Starke Kenntnisse in Python, C/C++, HIL-Tests und agilen Methoden.
+            Testautomatisierung, Softwareentwicklung und Softwaretests.
+            Starke Kenntnisse und Erfahrung in Python, C/C++, HIL-Tests und agilen Methoden.
           </p>
         </Section>
 
@@ -41,10 +81,10 @@ export default function Portfolio() {
         <Section title="Fähigkeiten">
           <div style={styles.skillGrid}>
             {[
-              "Python", "C / C++", "LUA", "Git & GitHub", "CAN / FlexRay / Ethernet",
+              "Python", "C / C++", "LUA", "Git & GitHub", 
               "HIL-Tests", "Linux (Bash)", "Agil (Scrum, Kanban)",
               "Visual Studio Code, Pycharm, Anconda",
-              "Vector CANoe, vTESTstudio, EXAM, Ranorex",
+              "Vector CANoe, vTESTstudio, EXAM, Ranorex", "CAN / FlexRay / Ethernet",
               "ISTQB Zertifikat",
               "JIRA, Confluence"
             ].map(skill => (
@@ -54,162 +94,161 @@ export default function Portfolio() {
         </Section>
 
         {/* ================= BERUFSERFAHRUNG ================= */}
-        <section style={{ marginBottom: "40px" }}>
-        <h2 style={{ fontSize: "1.6rem", fontWeight: "600", marginBottom: "16px" }}>
-        Berufserfahrung
-        </h2>
+        <Section title="Berufserfahrung">
+          <ExperienceCard
+            darkMode={darkMode}
+            role="Test- & Entwicklungsingenieur"
+            company="in-tech GmbH"
+            duration="Okt 2022 – Feb 2026"
+            projects={[
+              {
+                title: "Projekt 1: BMW – Crowd Data Collector (CDC)",
+                points: [
+                  "Weiterentwicklung und Pflege von LUA-Skripten mit CI/CD",
+                  "Analyse großer Fahrzeugdatensätze (Big Data) in AWS",
+                  "Versionsverwaltung mit Git und GitHub"
+                ],
+                tech: "Linux, LUA, Python, AWS, GitHub/Git, CI/CD, Advantage, Brian, Splunk, Jira, Confluence"
+              },
+              {
+                title: "Projekt 2: KTM Motorrad – ePP Labbike T200 (HIL)",
+                points: [
+                  "Automatisierte HIL-Tests mit CANoe und vTESTstudio",
+                  "Test von Battery Handling, Drive Mode Handling und Vehicle State Machine",
+                  "Erstellung und Pflege von Testspezifikationen"
+                ],
+                tech: "CANoe, vTESTstudio, HIL, Vector Tools, Microsoft Office"
+              },
+              {
+                title: "Projekt 3: In-tech internes Projekt – Embedded Software",
+                points: [
+                  "Embedded Softwareentwicklung auf Raspberry Pi (Linux)",
+                  "Python-Entwicklung nach Scrum-Methodik",
+                  "Sprintplanung, Reviews und Retrospektiven"
+                ],
+                tech: "Python, Linux, Raspberry Pi, Git, Scrum, Unit Tests, CI/CD, EXAM, Jira, Confluence"
+              },
+              {
+                title: "Projekt 4: CARIAD – Buskommunikation & Fehleranalyse",
+                points: [
+                  "Analyse von NMH-, E2E- und Knockout-Tests",
+                  "Fehleranalyse für CAN, FlexRay und Ethernet",
+                  "Dokumentation und Abstimmung mit Entwicklungsteams"
+                ],
+                tech: "CAN, FlexRay, Ethernet, KPM, Microsoft Office, Jira, Confluence"
+              }
+            ]}
+          />
 
-            <ExperienceCard
-        role="Test- & Entwicklungsingenieur"
-        company="in-tech GmbH"
-        duration="Okt 2022 – Feb 2026"
-        projects={[
-          {
-            title: "Projekt 1: BMW – Crowd Data Collector (CDC)",
-            points: [
-              "Weiterentwicklung und Pflege von LUA-Skripten mit CI/CD",
-              "Analyse großer Fahrzeugdatensätze (Big Data) in AWS",
-              "Versionsverwaltung mit Git und GitHub"
-            ],
-            tech: "Linux, LUA, Python, AWS, Git, CI/CD, Advantage, Brian, Splunk, Jira, Confluence"
-          },
-          {
-            title: "Projekt 2: KTM Motorrad – ePP Labbike T200 (HIL)",
-            points: [
-              "Automatisierte HIL-Tests mit CANoe und vTESTstudio",
-              "Test von Battery Handling, Drive Mode Handling und Vehicle State Machine",
-              "Erstellung und Pflege von Testspezifikationen"
-            ],
-            tech: "CANoe, vTESTstudio, HIL, Vector Tools"
-          },
-          {
-            title: "Projekt 3: In-tech internes Projekt – Embedded Software",
-            points: [
-              "Embedded Softwareentwicklung auf Raspberry Pi (Linux)",
-              "Python-Entwicklung nach Scrum-Methodik",
-              "Sprintplanung, Reviews und Retrospektiven"
-            ],
-            tech: "Python, Linux, Raspberry Pi, Git, Scrum, Jira, Confluence, Unit Tests, CI/CD, EXAM"
-          },
-          {
-            title: "Projekt 4: CARIAD – Buskommunikation & Fehleranalyse",
-            points: [
-              "Analyse von NMH-, E2E- und Knockout-Tests",
-              "Fehleranalyse für CAN, FlexRay und Ethernet",
-              "Dokumentation und Abstimmung mit Entwicklungsteams"
-            ],
-            tech: "CAN, FlexRay, Ethernet, CANoe, Python"
-          }
-        ]}
-      />
+          <ExperienceCard
+            darkMode={darkMode}
+            role="Praktikum & Masterarbeit"
+            company="ADC Continental GmbH"
+            duration="Juni 2021 – Sept 2022"
+            projects={[
+              {
+                title: "Masterarbeit: Entwicklung von Softwarearchitekturen für den Systemtest",
+                points: [
+                  "Entwicklung einer Softwarearchitektur für Radarsensor-Systemtests gemäß SDLC"
+                ],
+                tech: "Python, CANoe, Systemtest, SDLC, Software Architectur"
+              },
+              {
+                title: "Praktikum: Radarsensor-Systemtest",
+                points: [
+                  "Durchführung manueller Testfälle zur Leistungsprüfung und für Homologationstests von Radarsensoren (Systemtest)",
+                  <p key="tools">Einsatz von Messmitteln und Tools wie Spektrumanalysator, dSPACE Radar Target Simulator, Oszilloskop,<br />
+                  Vector CANoe (Restbussimulation), Measurement Interface (MI5), Temperaturkammer, XCP und Wireshark</p>
+                ],
+                tech: "Python, Anconda, Radar Sensor, Python, Flashing, Simulation, CAN,Ethernet, CANoe, Jira, Confluence"
+              }
+            ]}
+          />
+        </Section>
 
-      <ExperienceCard
-        role="Praktikum & Masterarbeit"
-        company="ADC Continental GmbH"
-        duration="Juni 2021 – Sept 2022"
-        projects={[
-          {
-            title: "Masterarbeit: Entwicklung von Softwarearchitekturen für den Systemtest",
-            points: [
-              "Entwicklung einer Softwarearchitektur für Radarsensor-Systemtests gemäß SDLC"
-            ],
-            tech: "Python, CANoe, Systemtest, SDLC, Software Architectur"
-          },
-          {
-            title: "Praktikum: Radarsensor-Systemtest",
-            points: [
-             "Durchführung manueller Testfälle zur Leistungsprüfung und für Homologationstests von Radarsensoren (Systemtest)",
-             <p>Einsatz von Messmitteln und Tools wie Spektrumanalysator, dSPACE Radar Target Simulator, Oszilloskop,<br />
-              Vector CANoe (Restbussimulation), Measurement Interface (MI5),     Temperaturkammer, XCP und Wireshark </p>
-              
-            ],
-            tech: "CAN,Ethernet, CANoe, Python, Radar Sensor, Python, Flashing, Simulation"
-          }
-        ]}
-      />
-    </section>
         {/* ================= AUSBILDUNG ================= */}
-<Section title="Ausbildung">
+        <Section title="Ausbildung">
+          <EducationCard
+            darkMode={darkMode}
+            title="Weiterbildung – Embedded System Softwareentwicklung"
+            place="Emertxe Information Technologies, Bangalore, Indien · Sept 2025 – März 2026"
+            points={[
+              "Schwerpunkt: Linux Systems: Linux-Kommandos, Shell, Pipes, VIM-Editor",
+              "C Programmierung: Operatoren, Loops, Arrays, Funktionen, Pointers, Strings, Structures, Storage classes",
+              "Datenstrukturen, C++ (OOP)",
+              "Mikrocontroller, Linux Internals Networking, Embedded Linux",
+            ]}
+          />          
+          <EducationCard
+            darkMode={darkMode}
+            title="Master Studium (M.Eng) –  Simulation Und System Design"
+            place="Hochschule Stralsund · 2020 – 2022"
+            points={[
+              "Schwerpunkt: Fahrzeugsysteme und Simulation, Informatik, Mathematik",
+              "Masterarbeit im Bereich Systemtest von Radarsensoren",
+              "Praxisorientierte Projekte mit Fokus auf Automotive Software",
+            ]}
+          />
 
-  <div style={styles.card}>
-    <h3 style={styles.cardTitle}>
-      Master of Engineering  – Simulation Und System Design
-    </h3>
-    <p style={styles.cardSubtitle}>
-      Hochschule Stralsund · 2020 – 2022
-    </p>
-    <ul style={styles.list}>
-      <li>Schwerpunkt: Fahrzeugsysteme und Simulation, Informatik, Mathematik </li>
-      <li>Masterarbeit im Bereich Systemtest von Radarsensoren</li>
-      <li>Praxisorientierte Projekte mit Fokus auf Automotive Software</li>
-    </ul>
-  </div>
+          <EducationCard
+            darkMode={darkMode}
+            title="Bachelor Studium (B.Tech.) – Maschinenbau"
+            place="Anna University – Indien · 2007 – 2011"
+            points={[
+              "Grundlagen in Robotik, Simulation und Regelungstechnik",
+              "Programmierung in C, C++ und Python",
+            ]}
+          />
 
-  <div style={styles.card}>
-    <h3 style={styles.cardTitle}>
-      Bachelor of Technology (B.Tech.) – Maschinenbau
-    </h3>
-    <p style={styles.cardSubtitle}>
-      Anna University- Indien · 2007 – 2011
-    </p>
-    <ul style={styles.list}>
-      <li>Grundlagen in Robotik, Simulation und Regelungstechnik</li>
-      <li>Programmierung in C, C++ und Python</li>
-    </ul>
-  </div>
 
-  <div style={styles.card}>
-    <h3 style={styles.cardTitle}>
-      Weiterbildung  – Embedded System Softwareentwicklung
-    </h3>
-    <p style={styles.cardSubtitle}>
-      Emertxe Information Technologies, Bangalore, Indien · 2025 – 2026
-    </p>
-    <ul style={styles.list}>
-      <li>Schwerpunkt: Linux Systems: Linux-Kommandos, Shell, Pipes, VIM-Editor </li>
-      <li>C Programmierung: Operatoren, Loops, Arrays, Funktionen,
-          Pointers, Strings, Structures, Storage classes</li>
-      <li>Datenstrukturen, C++ (OOP).</li> 
-      <li> Mikrocontroller, Linux Internals Networking, Embedded Linux.</li>
-    </ul>
-  </div>
-
-</Section>
-
+        </Section>
 
         {/* ================= PROJEKTE ================= */}
-        <Section title="Projekte">
-
+        <Section title="Persönliche Projekte">
           <ProjectCard
-            title="SpaceX Launch Tracker"
+            darkMode={darkMode}
+            title="SpaceX Launch Tracker - Python Programmierung"
             description={[
               "Problem: Notwendigkeit zur Analyse der SpaceX-Startdaten",
               "Lösung: Entwicklung einer Python-Anwendung unter Nutzung der SpaceX-API",
               "Ergebnis: Visualisierung von Starts, Missionsdetails und Statistiken"
             ]}
-            tech="Python, REST API, Datenvisualisierung"
+            tech="Python, Pycharm, Virtual Enviornment, REST API"
             link="https://github.com/Jinisht/SpaceX_Launch_Tracker"
           />
 
           <ProjectCard
-            title="Adressbuch-Anwendung"
+            darkMode={darkMode}
+            title="Adressbuch Anwendung - C Programmierung"
             description={[
               "Konsolenbasierte C-Anwendung zur Verwaltung von Kontakten",
               "Unterstützt CRUD-Operationen mit Dateiverwaltung",
               "Fokus auf Speicherverwaltung und Datenstrukturen"
             ]}
-            tech="C, Dateiverarbeitung, Datenstrukturen"
-            link="https://github.com/Jinisht"
+            tech="C, Visual Studio Code, Code Dateiverarbeitung, Datenstrukturen, Funktion, Strings"
+            link="https://github.com/Jinisht/Addressbook-Project"
           />
 
+           <ProjectCard
+            darkMode={darkMode}
+            title="Steganografie - C Programmierung"
+            description={[
+              "Dieses Projekt implementiert Bildsteganographie in C. Geheime Nachrichten werden in BMP-Bildern versteckt, indem die Least Significant Bits (LSB) der Pixel modifiziert werden.", 
+              "Das Programm unterstützt Encoding und Decoding, sodass Benutzer Nachrichten in ein Bild einbetten und später wieder extrahieren können.",
+               "Es demonstriert Konzepte wie Dateiverarbeitung, Bitmanipulation und Datenversteckung als zusätzliche Sicherheitsebene."
+            ]}
+            tech="C, Visual Studio Code, Dateiverarbeitung, Datenstrukturen, Bitmanipulation, Pointer, I/O file"
+            link="https://github.com/Jinisht/Steganography_project"
+          />         
         </Section>
 
         {/* ================= ERFOLGE ================= */}
         <Section title="Erfolge">
           <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
             <li>ISTQB Certified Tester-Foundation</li>
+            <li>Englisch - Fluent</li>
             <li>Deutsch (B2)</li>
-            <li>Führerschein–Klasse B</li>
+            <li>Führerschein – Klasse B</li>
           </ul>
         </Section>
 
@@ -217,7 +256,6 @@ export default function Portfolio() {
         <footer style={styles.footer}>
           © 2025 Jinish Thomas · Portfolio
         </footer>
-
       </div>
     </div>
   );
@@ -233,37 +271,62 @@ function Section({ title, children }) {
   );
 }
 
-function ExperienceCard({ role, company, duration, projects }) {
+function ExperienceCard({ darkMode, role, company, duration, projects }) {
   return (
-    <div style={styles.card}>
+    <div
+      style={{
+        ...styles.card,
+        backgroundColor: darkMode ? theme.dark.cardBg : theme.light.cardBg,
+        border: `1px solid ${darkMode ? theme.dark.border : theme.light.border}`,
+      }}
+    >
       <h3 style={styles.cardTitle}>{role}</h3>
-      <p style={styles.cardSubtitle}>
+      <p style={{...styles.cardSubtitle, color: darkMode ? theme.dark.mutedText : theme.light.mutedText}}>
         {company} · {duration}
       </p>
 
       {projects.map((project, index) => (
         <div key={index} style={styles.projectBlock}>
           <h4 style={styles.projectTitle}>{project.title}</h4>
-
           <ul style={styles.list}>
             {project.points.map((p, i) => (
               <li key={i}>{p}</li>
             ))}
           </ul>
-
-          <p style={styles.projectTech}>
-            <strong>Tech Stack:</strong> {project.tech}
-          </p>
+          <p style={styles.projectTech}><strong>Tech Stack:</strong> {project.tech}</p>
         </div>
       ))}
     </div>
   );
 }
 
-
-function ProjectCard({ title, description, tech, link }) {
+function EducationCard({ darkMode, title, place, points }) {
   return (
-    <div style={styles.card}>
+    <div
+      style={{
+        ...styles.card,
+        backgroundColor: darkMode ? theme.dark.cardBg : theme.light.cardBg,
+        border: `1px solid ${darkMode ? theme.dark.border : theme.light.border}`,
+      }}
+    >
+      <h3 style={styles.cardTitle}>{title}</h3>
+      <p style={{...styles.cardSubtitle, color: darkMode ? theme.dark.mutedText : theme.light.mutedText}}>{place}</p>
+      <ul style={styles.list}>
+        {points.map((p, i) => <li key={i}>{p}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+function ProjectCard({ darkMode, title, description, tech, link }) {
+  return (
+    <div
+      style={{
+        ...styles.card,
+        backgroundColor: darkMode ? theme.dark.cardBg : theme.light.cardBg,
+        border: `1px solid ${darkMode ? theme.dark.border : theme.light.border}`,
+      }}
+    >
       <h3 style={styles.cardTitle}>{title}</h3>
       <ul style={styles.list}>
         {description.map((d, i) => <li key={i}>{d}</li>)}
@@ -276,28 +339,104 @@ function ProjectCard({ title, description, tech, link }) {
   );
 }
 
+/* ================= THEMES ================= */
+const theme = {
+  light: {
+    pageBg: "linear-gradient(135deg, #eef2ff, #f8fafc)",
+    containerBg: "#ffffff",
+    text: "#111827",
+    mutedText: "#6b7280",
+    cardBg: "#ffffff",
+    border: "#e5e7eb",
+  },
+  dark: {
+    pageBg: "linear-gradient(135deg, #020617, #0f172a)",
+    containerBg: "#020617",
+    text: "#e5e7eb",
+    mutedText: "#94a3b8",
+    cardBg: "#0f172a",
+    border: "#1e293b",
+  },
+};
+
 /* ================= STYLES ================= */
 const styles = {
-  page: { backgroundColor: "#f3f4f6", minHeight: "100vh" },
-  container: { maxWidth: "1000px", margin: "0 auto", padding: "40px 20px", fontFamily: "Inter, Arial, sans-serif", color: "#111827" },
+  page: { minHeight: "100vh", transition: "background 0.3s, color 0.3s" },
+  container: {
+    maxWidth: "1000px",
+    margin: "40px auto",
+    padding: "40px 30px",
+    borderRadius: "20px",
+    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+    transition: "background 0.3s",
+  },
   header: { textAlign: "center", marginBottom: "60px" },
-  name: { fontSize: "2.6rem", fontWeight: "700" },
-  title: { marginTop: "10px", fontSize: "1.1rem" },
-  subtitle: { fontSize: "0.95rem", color: "#6b7280" },
+  name: {
+    fontSize: "3rem",
+    fontWeight: "800",
+    background: "linear-gradient(90deg, #2563eb, #9333ea)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  },
+  title: { marginTop: "12px", fontSize: "1.15rem", fontWeight: "500" },
+  subtitle: { fontSize: "0.95rem", color: "#64748b" },
   iconRow: { display: "flex", justifyContent: "center", gap: "18px", marginTop: "16px" },
 
   section: { marginBottom: "60px" },
-  sectionTitle: { fontSize: "1.6rem", fontWeight: "600", marginBottom: "20px" },
+  sectionTitle: {
+    fontSize: "1.6rem",
+    fontWeight: "700",
+    marginBottom: "20px",
+    borderLeft: "5px solid #2563eb",
+    paddingLeft: "12px",
+  },
 
-  card: { background: "#fff", padding: "20px", borderRadius: "14px", boxShadow: "0 10px 20px rgba(0,0,0,0.08)", marginBottom: "20px" },
-  cardTitle: { fontSize: "1.2rem", fontWeight: "600" },
-  cardSubtitle: { fontSize: "0.9rem", color: "#6b7280", marginBottom: "12px" },
+  card: {
+    padding: "24px",
+    borderRadius: "20px",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+    marginBottom: "24px",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease, background 0.3s",
+  },
+  cardHover: {
+    transform: "translateY(-6px)",
+    boxShadow: "0 12px 28px rgba(0,0,0,0.15)",
+  },
+  cardTitle: { fontSize: "1.3rem", fontWeight: "600", marginBottom: "8px" },
+  cardSubtitle: { fontSize: "0.9rem", marginBottom: "12px" },
+  projectBlock: { marginTop: "16px" },
+  projectTitle: { fontSize: "1rem", fontWeight: "600" },
   list: { paddingLeft: "20px", lineHeight: "1.6" },
-  tech: { marginTop: "10px", fontSize: "0.9rem" },
+  projectTech: { marginTop: "10px", fontSize: "0.9rem" },
 
   skillGrid: { display: "flex", flexWrap: "wrap", gap: "10px" },
-  skillChip: { background: "#e5e7eb", padding: "6px 12px", borderRadius: "999px", fontSize: "0.85rem" },
+  skillChip: {
+    background: "linear-gradient(135deg, #2563eb, #9333ea)",
+    color: "#fff",
+    padding: "8px 16px",
+    borderRadius: "999px",
+    fontSize: "0.85rem",
+    fontWeight: "500",
+    transition: "transform 0.2s ease",
+  },
+  skillChipHover: {
+    transform: "scale(1.05)",
+  },
 
-  link: { color: "#2563eb", fontSize: "0.9rem", fontWeight: "500" },
-  footer: { textAlign: "center", fontSize: "0.85rem", color: "#6b7280", marginTop: "60px" }
+  tech: { marginTop: "10px", fontSize: "0.9rem" },
+  link: {
+    color: "#2563eb",
+    fontSize: "0.9rem",
+    fontWeight: "500",
+    textDecoration: "underline",
+    transition: "color 0.2s ease",
+  },
+  footer: {
+    textAlign: "center",
+    fontSize: "0.85rem",
+    color: "#64748b",
+    marginTop: "80px",
+    borderTop: "1px solid #e5e7eb",
+    paddingTop: "20px",
+  },
 };
