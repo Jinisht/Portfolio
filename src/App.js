@@ -175,7 +175,8 @@ export default function Portfolio() {
             points={[
               "Schwerpunkt: Linux Systems: Linux-Kommandos, Shell, Pipes, VIM-Editor",
               "C Programmierung: Operatoren, Loops, Arrays, Funktionen, Pointers, Strings, Structures, Storage classes",
-              "Datenstrukturen, C++ (OOP)",
+              "C++ (OOP)",
+              "Datenstrukturen",
               "Mikrocontroller, Linux Internals Networking, Embedded Linux",
             ]}
           />          
